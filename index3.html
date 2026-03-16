@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PJ Provincia de Buenos Aires</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root{
+      --azul-base:#165f8e;
+      --azul-1:#165f8e;
+      --azul-2:#1b689a;
+      --azul-3:#2372a7;
+      --azul-4:#2b7cb4;
+      --azul-5:#3386c1;
+      --azul-6:#3e90cb;
+      --azul-7:#4a9ad4;
+      --azul-8:#58a6de;
+
+      --fondo:#eef2f5;
+      --blanco:#ffffff;
+      --texto:#1f2d3d;
+      --borde:#d9e2ea;
+      --sombra:0 10px 28px rgba(31,45,61,0.08);
+      --radio:22px;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Montserrat', sans-serif;
+      background:var(--fondo);
+      color:var(--texto);
+    }
+
+    .page{
+      width:100%;
+      min-height:100vh;
+      padding:22px;
+    }
+
+    .wrapper{
+      max-width:1700px;
+      margin:0 auto;
+    }
+
+    .header{
+      background:#165f8e;
+      border-radius:24px 24px 0 0;
+      overflow:hidden;
+      box-shadow:var(--sombra);
+    }
+
+    .header img{
+      display:block;
+      width:100%;
+      height:auto;
+    }
+
+    .main-box{
+      background:#f3f6f8;
+      box-shadow:var(--sombra);
+      padding:34px 36px 40px;
+      min-height:720px;
+    }
+
+    .main-grid{
+      display:grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap:34px;
+      align-items:start;
+    }
+
+    .map-panel{
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      min-height:620px;
+    }
+
+    .map-card{
+      width:100%;
+      max-width:650px;
+      min-height:620px;
+      border-radius:20px;
+      background:var(--blanco);
+      border:1px solid var(--borde);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .map-card img{
+      width:100%;
+      max-width:520px;
+      height:auto;
+      display:block;
+    }
+
+    .right-panel{
+      display:flex;
+      flex-direction:column;
+      padding-top:8px;
+    }
+
+    .right-title{
+      font-size:clamp(1.4rem, 2vw, 2rem);
+      font-weight:800;
+      color:var(--azul-base);
+      text-transform:uppercase;
+      margin-bottom:22px;
+      letter-spacing:0.01em;
+    }
+
+    .section-list{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      max-width:500px;
+    }
+
+    .section-btn{
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      text-decoration:none;
+      color:var(--blanco);
+      border-radius:10px;
+      padding:14px 18px;
+      min-height:58px;
+      box-shadow:0 6px 14px rgba(22,95,142,0.16);
+      transition:transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .section-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 18px rgba(22,95,142,0.22);
+      filter:brightness(1.03);
+    }
+
+    .section-label{
+      font-size:1rem;
+      font-weight:600;
+      line-height:1.2;
+    }
+
+    .section-arrow{
+      font-size:1.8rem;
+      line-height:1;
+      font-weight:400;
+      opacity:0.95;
+    }
+
+    .s1{ background:var(--azul-1); }
+    .s2{ background:var(--azul-2); }
+    .s3{ background:var(--azul-3); }
+    .s4{ background:var(--azul-4); }
+    .s5{ background:var(--azul-5); }
+    .s6{ background:var(--azul-6); }
+    .s7{ background:var(--azul-7); }
+    .s8{ background:var(--azul-8); }
+
+    .footer{
+      background:#f3f6f8;
+      border-top:1px solid var(--borde);
+      box-shadow:var(--sombra);
+      border-radius:0 0 24px 24px;
+      min-height:96px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:24px;
+      color:#5d6d7a;
+      font-weight:500;
+    }
+
+    @media (max-width: 1100px){
+      .main-grid{
+        grid-template-columns:1fr;
+      }
+
+      .map-card{
+        min-height:unset;
+      }
+
+      .right-panel{
+        align-items:center;
+      }
+
+      .right-title{
+        text-align:center;
+      }
+
+      .section-list{
+        width:100%;
+      }
+    }
+
+    @media (max-width: 700px){
+      .page{
+        padding:12px;
+      }
+
+      .main-box{
+        padding:22px 18px 28px;
+      }
+
+      .map-card{
+        padding:14px;
+      }
+
+      .section-btn{
+        padding:13px 16px;
+        min-height:54px;
+      }
+
+      .section-label{
+        font-size:0.95rem;
+      }
+
+      .section-arrow{
+        font-size:1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+    <div class="wrapper">
+
+      <header class="header">
+        <img src="imagenes/headerpba.png" alt="Partido Justicialista Provincia de Buenos Aires">
+      </header>
+
+      <main class="main-box">
+        <div class="main-grid">
+
+          <section class="map-panel">
+            <div class="map-card">
+              <img src="imagenes/imagenes/mapaazul.png" alt="Mapa de la provincia de Buenos Aires dividido por secciones electorales">
+            </div>
+          </section>
+
+          <aside class="right-panel">
+            <h2 class="right-title">Secciones Electorales</h2>
+
+            <div class="section-list">
+              <a class="section-btn s1" href="seccion1.html">
+                <span class="section-label">1° Sección Electoral</span>
+                <span class="section-arrow">›</span>
+              </a>
+
+              <a class="section-btn s2" href="seccion2.html">
+                <span class="section-label">2° Sección Electoral</span>
+                <span class="section-arrow">›</span>
+              </a>
+
+              <a class="section-btn s3" href="seccion3.html">
+                <span class="section-label">3° Sección Electoral</span>
+                <span class="section-arrow">›</span>
+              </a>
+
+              <a class="section-btn s4" href="seccion4.html">
+                <span class="section-label">4° Sección Electoral</span>
+                <span class="section-arrow">›</span>
+              </a>
+
+              <a class="section-btn s5" href="seccion5.html">
+                <span class="section-label">5° Sección Electoral</span>
+                <span class="section-arrow">›</span>
+              </a>
+
+              <a class="section-btn s6" href="seccion6.html">
+                <span class="section-label">6° Sección Electoral</span>
+                <span class="section-arrow">›</span>
+              </a>
+
+              <a class="section-btn s7" href="seccion7.html">
+                <span class="section-label">7° Sección Electoral</span>
+                <span class="section-arrow">›</span>
+              </a>
+
+              <a class="section-btn s8" href="seccion8.html">
+                <span class="section-label">8° Sección Electoral</span>
+                <span class="section-arrow">›</span>
+              </a>
+            </div>
+          </aside>
+
+        </div>
+      </main>
+
+      <footer class="footer">
+        PJ Provincia de Buenos Aires · Panel de acceso a secciones y municipios
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+</html>
