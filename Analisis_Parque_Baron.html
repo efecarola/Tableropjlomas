@@ -4,26 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Análisis Territorial – PJ Lomas de Zamora</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Fuentes de Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Iconos Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     
-    <!-- Marker Cluster -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 
-    <!-- SheetJS -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
     <style>
@@ -60,15 +53,12 @@
 </head>
 <body class="relative">
 
-    <!-- Encabezado Institucional -->
     <div class="bg-[#5687C5] shadow-lg border-b-4 border-[#084A6F] relative z-20 flex justify-center w-full overflow-hidden">
-        <img src="./bannerfinal.png" onerror="this.onerror=null; this.src='./bannerfinal.png';" alt="Partido Justicialista Lomas de Zamora" class="w-full h-auto sm:max-h-[220px] object-cover object-center">
+        <img src="./bannerfinal.png" alt="Partido Justicialista Lomas de Zamora" class="w-full h-auto block">
     </div>
 
-    <!-- VISTA 1: Dashboard -->
     <div id="dashboard-view" class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 transition-opacity duration-300">
         
-        <!-- BLOQUE 1: Información Territorial -->
         <div class="mb-12">
             <h2 class="text-xl font-extrabold text-[#29498f] mb-5 border-b-2 border-[#E6EDF3] pb-2 flex items-center gap-2 uppercase tracking-wide">
                 <i data-lucide="map-pin" class="h-6 w-6"></i> Información Territorial
@@ -120,7 +110,6 @@
                         </div>
                     </div>
                     
-                    <!-- Botonera de Acciones -->
                     <div class="flex flex-col gap-3 w-full lg:w-64 pt-4 lg:pt-10">
                         <button onclick="toggleView('map')" class="flex items-center justify-center gap-2 w-full py-4 bg-[#29498f] text-[#FFFFFF] rounded-xl font-bold hover:bg-[#1c3365] transition-all shadow-md uppercase text-sm">
                             <i data-lucide="map" class="h-5 w-5"></i> MAPA TERRITORIAL
@@ -136,9 +125,7 @@
             </div>
         </div>
 
-        <!-- BLOQUE 2: KPIs Principales -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-            <!-- Fuerza de Afiliados -->
             <div class="bg-[#FFFFFF] rounded-xl shadow-md overflow-hidden border border-[#E6EDF3] lg:col-span-2">
                 <div class="bg-[#F3F6F9] border-b px-6 py-4 flex items-center gap-3">
                     <i data-lucide="users-2" class="text-[#29498f]"></i><h3 class="text-lg font-bold uppercase">Fuerza de Afiliados</h3>
@@ -158,7 +145,6 @@
                 </div>
             </div>
 
-            <!-- Relevamiento Territorial -->
             <div class="bg-[#FFFFFF] rounded-xl shadow-md border border-[#E6EDF3] flex flex-col">
                 <div class="bg-[#F3F6F9] border-b px-6 py-4 flex items-center gap-3">
                     <i data-lucide="clipboard-check" class="text-[#29498f]"></i><h3 class="text-lg font-bold uppercase">Relevamiento</h3>
@@ -176,9 +162,7 @@
             </div>
         </div>
 
-        <!-- BLOQUE 3: Desempeño y Movilización -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-            <!-- Participación -->
             <div class="bg-[#FFFFFF] rounded-xl shadow-md border border-[#E6EDF3]">
                 <div class="bg-[#F3F6F9] border-b px-6 py-4 flex items-center gap-3"><i data-lucide="archive" class="text-[#29498f]"></i><h3 class="text-lg font-bold uppercase">Participación Afiliada</h3></div>
                 <div class="p-6">
@@ -203,7 +187,6 @@
                 </div>
             </div>
 
-            <!-- Movilización -->
             <div class="bg-[#FFFFFF] rounded-xl shadow-md border border-[#E6EDF3]">
                 <div class="bg-[#F3F6F9] border-b px-6 py-4 flex items-center gap-3"><i data-lucide="crosshair" class="text-[#29498f]"></i><h3 class="text-lg font-bold uppercase">Movilización Territorial</h3></div>
                 <div class="p-6 space-y-3">
@@ -223,7 +206,6 @@
             </div>
         </div>
 
-        <!-- BLOQUE 4: Escrutinio y Rango Etario -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
             <div class="bg-[#FFFFFF] rounded-xl shadow-md border border-[#E6EDF3]">
                 <div class="bg-[#F3F6F9] border-b px-6 py-4 flex items-center gap-3"><i data-lucide="bar-chart-2" class="text-[#29498f]"></i><h3 class="text-lg font-bold uppercase">Escrutinio General</h3></div>
@@ -246,7 +228,6 @@
             </div>
         </div>
 
-        <!-- BLOQUE 5: Circuitos (Agrupados con Escrutinio) -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
             <div class="bg-[#FFFFFF] rounded-xl shadow-md border border-[#E6EDF3]">
                 <div class="bg-[#F3F6F9] border-b px-6 py-4 flex items-center gap-3"><i data-lucide="layers-2" class="text-[#29498f]"></i><h3 class="font-bold uppercase text-xs">Septiembre por Circuito</h3></div>
@@ -258,13 +239,11 @@
             </div>
         </div>
 
-        <!-- BLOQUE 6: INTERACCIONES TERRITORIALES -->
         <div class="mb-12">
             <h2 class="text-xl font-extrabold text-[#29498f] mb-5 border-b-2 border-[#E6EDF3] pb-2 flex items-center gap-2 uppercase tracking-wide">
                 <i data-lucide="message-circle" class="h-6 w-6"></i> Interacciones Territoriales
             </h2>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- TOP Etiquetas -->
                 <div class="bg-[#FFFFFF] rounded-xl shadow-md border border-[#E6EDF3] lg:col-span-2 flex flex-col">
                     <div class="bg-[#F3F6F9] border-b px-6 py-4 flex items-center gap-3">
                         <i data-lucide="bar-chart-3" class="text-[#29498f]"></i><h3 class="font-bold uppercase">Afiliados con Interacciones</h3>
@@ -274,7 +253,6 @@
                     </div>
                 </div>
                 
-                <!-- Acceso a Tabla Interacciones -->
                 <div class="bg-[#FFFFFF] rounded-xl shadow-md border border-[#E6EDF3] flex flex-col justify-center items-center p-6 text-center">
                     <div class="bg-[#e8edf5] p-4 rounded-full mb-4 shadow-inner">
                         <i data-lucide="table" class="text-[#29498f] h-8 w-8"></i>
@@ -286,7 +264,6 @@
                     </button>
                 </div>
 
-                <!-- Gráfico de Barras: Volumen de Interacciones Sumadas -->
                 <div class="bg-[#FFFFFF] rounded-xl shadow-md border border-[#E6EDF3] lg:col-span-3 flex flex-col mt-2">
                     <div class="bg-[#F3F6F9] border-b px-6 py-4 flex items-center gap-3">
                         <i data-lucide="bar-chart-horizontal" class="text-[#29498f]"></i><h3 class="font-bold uppercase">Volumen de Interacciones por Categoría</h3>
@@ -298,7 +275,6 @@
             </div>
         </div>
 
-        <!-- BLOQUE 7: REDES SOCIALES -->
         <div class="mb-12">
             <h2 class="text-xl font-extrabold text-[#29498f] mb-5 border-b-2 border-[#E6EDF3] pb-2 flex items-center gap-2 uppercase tracking-wide">
                 <i data-lucide="smartphone" class="h-6 w-6"></i> Redes Sociales
@@ -308,7 +284,6 @@
                     <i data-lucide="share-2" class="text-[#29498f]"></i><h3 class="font-bold uppercase">Análisis Redes Sociales</h3>
                 </div>
                 
-                <!-- Sub-bloque KPIs Redes Sociales -->
                 <div class="border-b border-[#E6EDF3] bg-white p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="flex items-center gap-4 bg-[#F3F6F9] p-4 rounded-xl border border-[#E6EDF3]">
                         <div class="bg-white p-3 rounded-full shadow-sm text-pink-600"><i data-lucide="instagram" class="h-6 w-6"></i></div>
@@ -329,7 +304,6 @@
                     </div>
                 </div>
 
-                <!-- Sub-bloque Texto Analisis -->
                 <div class="p-8 text-sm text-[#475569] leading-relaxed" id="kpi-analisis-redes">
                     <p class="text-xs text-[#64748B] text-center italic">Cargue archivo Análisis Redes (_analisis_redes.json)...</p>
                 </div>
@@ -337,7 +311,6 @@
         </div>
     </div>
 
-    <!-- VISTA 2: Tabla de Afiliados Optimizada -->
     <div id="table-view" class="hidden max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
             <h2 class="text-3xl font-bold tracking-tight flex items-center gap-3 uppercase"><i data-lucide="list" class="text-[#29498f] h-8 w-8"></i> Detalle de Afiliados</h2>
@@ -377,7 +350,6 @@
         </div>
     </div>
 
-    <!-- VISTA 3: Tabla de Interacciones -->
     <div id="table-interacciones-view" class="hidden max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
             <h2 class="text-3xl font-bold tracking-tight flex items-center gap-3 uppercase"><i data-lucide="message-square" class="text-[#29498f] h-8 w-8"></i> Detalle de Interacciones</h2>
@@ -412,18 +384,15 @@
         </div>
     </div>
 
-    <!-- VISTA 4: Informe Político Territorial -->
     <div id="informe-view" class="hidden max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
             <h2 class="text-3xl font-bold tracking-tight flex items-center gap-3 uppercase text-[#0F172A]"><i data-lucide="briefcase" class="text-[#29498f] h-8 w-8"></i> Informe Político Territorial</h2>
             <button onclick="toggleView('dashboard')" class="flex items-center gap-2 px-5 py-2.5 bg-[#29498f] text-white rounded-full font-bold shadow-md hover:bg-[#1c3365] transition-all text-sm"><i data-lucide="arrow-left" class="h-4 w-4"></i> Volver al Dashboard</button>
         </div>
         <div id="informe-dinamico-content">
-            <!-- El contenido dinámico se inyectará aquí -->
-        </div>
+            </div>
     </div>
 
-    <!-- VISTA 5: Mapa Territorial Principal -->
     <div id="map-view" class="hidden max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
             <h2 class="text-3xl font-bold tracking-tight flex items-center gap-3 uppercase"><i data-lucide="layers" class="text-[#29498f]"></i> Mapa Territorial</h2>
@@ -448,7 +417,6 @@
         </div>
     </div>
 
-    <!-- Script Principal Reconstruido -->
     <script>
         // --- GLOBALES E ICONOS ---
         const svgIconos = {
