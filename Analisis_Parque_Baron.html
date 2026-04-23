@@ -1358,6 +1358,26 @@
             XLSX.writeFile(wb, "Detalle_Afiliados.xlsx");
         }
 
+        function exportarTablaInteraccionesExcel() {
+            if (!window.interaccionesData || window.interaccionesData.length === 0) {
+                alert("Cargue el archivo de Interacciones primero."); return;
+            }
+            const query = document.getElementById('search-interacciones').value.toLowerCase().trim();
+            let dataToExport = window.interaccionesData;
+            if (query) {
+                dataToExport = window.interaccionesData.filter(row => {
+                    const searchableStr = `${valStr(row.Matrícula)} ${valStr(row.Apellido)} ${valStr(row.Nombre)} ${valStr(row.Etiquetas)}`.toLowerCase();
+                    return searchableStr.includes(query);
+                });
+            }
+            if (dataToExport.length === 0) { alert("No hay resultados para exportar."); return; }
+
+            const ws = XLSX.utils.json_to_sheet(dataToExport);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Detalle Interacciones");
+            XLSX.writeFile(wb, "Detalle_Interacciones.xlsx");
+        }
+
         // --- ARRANQUE Y CARGA ---
         document.getElementById('geojson-upload')?.addEventListener('change', function(e) {
             const files = Array.from(e.target.files);
