@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Electoral 2027 - Daniela Vilar Presidenta</title>
+    <link rel="icon" type="image/png" href="logo_pj.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primario: #0047AB;
+            --color-secundario: #5499C7;
+            --color-acento: #F39C12;
+        }
+        body { font-family: 'Roboto', sans-serif; background-color: #f4f7f6; }
+        .sidebar-active { border-left: 4px solid var(--color-acento); background-color: rgba(255,255,255,0.1); }
+        .card-white { background: white; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); transition: transform 0.2s; }
+        .card-white:hover { transform: translateY(-5px); }
+        .tab-content { display: none; animation: fadeIn 0.5s ease-in-out; }
+        .active-section { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: var(--color-primario); border-radius: 10px; }
+    </style>
+</head>
+<body class="h-screen overflow-hidden flex">
+
+    <aside class="w-80 bg-[#0047AB] text-white flex flex-col shadow-xl">
+        <div class="p-8 text-center border-b border-blue-800">
+            <h1 class="text-2xl font-black tracking-tighter uppercase">PJ Lomas 2027</h1>
+            <p class="text-xs opacity-70 font-bold tracking-widest uppercase">Daniela Vilar Presidenta</p>
+        </div>
+        
+        <nav class="flex-1 px-4 py-8 space-y-2">
+            <button onclick="showTab('presentacion')" id="btn-presentacion" class="sidebar-item sidebar-active w-full text-left p-4 rounded-lg flex items-center space-x-3 transition-all">
+                <span class="font-bold uppercase text-sm tracking-wider">01. Presentación Propuesta Electoral</span>
+            </button>
+            <button onclick="showTab('resumen')" id="btn-resumen" class="sidebar-item w-full text-left p-4 rounded-lg flex items-center space-x-3 opacity-60 hover:opacity-100 transition-all">
+                <span class="font-bold uppercase text-sm tracking-wider">02. Musculatura Lomense</span>
+            </button>
+            <button onclick="showTab('jubilados')" id="btn-jubilados" class="sidebar-item w-full text-left p-4 rounded-lg flex items-center space-x-3 opacity-60 hover:opacity-100 transition-all">
+                <span class="font-bold uppercase text-sm tracking-wider">03. Nicho Adultos Mayores</span>
+            </button>
+            <button onclick="showTab('migrantes')" id="btn-migrantes" class="sidebar-item w-full text-left p-4 rounded-lg flex items-center space-x-3 opacity-60 hover:opacity-100 transition-all">
+                <span class="font-bold uppercase text-sm tracking-wider">04. Nicho Migrantes</span>
+            </button>
+            <button onclick="showTab('tecnico')" id="btn-tecnico" class="sidebar-item w-full text-left p-4 rounded-lg flex items-center space-x-3 opacity-60 hover:opacity-100 transition-all">
+                <span class="font-bold uppercase text-sm tracking-wider">05. Clusterización</span>
+            </button>
+            <button onclick="showTab('conclusiones')" id="btn-conclusiones" class="sidebar-item w-full text-left p-4 rounded-lg flex items-center space-x-3 opacity-60 hover:opacity-100 transition-all">
+                <span class="font-bold uppercase text-sm tracking-wider">06. Conclusiones</span>
+            </button>
+        </nav>
+
+        <div class="p-6 text-[10px] opacity-40 border-t border-blue-800 uppercase tracking-widest text-center">
+            Partido Justicialista <br>Lomas de Zamora - 2026
+        </div>
+    <!-- Aquí estaba el error: decía </aside -->
+    </aside>
+
+    <main class="flex-1 flex flex-col overflow-hidden">
+        <header class="h-24 bg-white border-b flex items-center justify-between px-10 shadow-sm z-10">
+            <h2 id="header-title" class="text-2xl font-black text-gray-800 uppercase tracking-tight">Presentación del Proyecto</h2>
+            
+            <div class="flex items-center">
+                <div class="text-right mr-6 border-r pr-6 border-gray-200">
+                    <p class="text-sm font-black text-[#0047AB] uppercase">Propuesta Territorial 2027</p>
+                    <p class="text-xs text-gray-400 font-bold uppercase tracking-tighter">PJ Lomas de Zamora</p>
+                </div>
+                <img src="logo_pj.png" alt="Logo PJ Lomas" class="h-16 w-auto object-contain drop-shadow-md">
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-10 space-y-8 bg-gray-50">
+            
+            <section id="presentacion" class="tab-content active-section">
+                <div class="card-white p-10 border-t-8 border-[#0047AB]">
+                    <div class="flex justify-between items-start mb-8">
+                        <div>
+                            <h3 class="text-3xl font-black text-gray-800 uppercase tracking-tighter">Plan Sistémico de Despliegue Territorial</h3>
+                            <p class="text-sm font-bold text-[#0047AB] uppercase tracking-widest">PJ Lomas de Zamora</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-8 rounded-2xl border-l-4 border-[#0047AB] mb-10 shadow-inner">
+                        <h4 class="font-black text-gray-800 uppercase mb-4 text-sm tracking-widest italic underline decoration-[#F39C12] decoration-4">I. Marco Político: El Partido como Brazo Ejecutor</h4>
+                        <p class="text-lg text-gray-700 leading-relaxed italic">
+                            No concebimos la política sin territorio, ni la gestión sin organización. Este proyecto no es solo una herramienta estadística; es el mapa de ruta para consolidar al <strong class="text-[#0047AB]">Partido Justicialista como el brazo político del Gobierno de la Comunidad</strong>. Nuestra misión es clara: transformar el flujo de información en fuerza militante, garantizando que cada política pública llegue a quien la necesita, casa por casa.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="card-white p-6 border border-gray-100 shadow-lg relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-2 bg-[#0047AB] text-white text-[10px] font-black uppercase">Fase 1</div>
+                            <h5 class="font-black text-gray-800 uppercase text-xs mb-4">Consolidación de la Musculatura Base (Los 42k)</h5>
+                            <p class="text-sm text-gray-600 leading-snug">
+                                El despliegue inicia hacia adentro. Antes de la expansión, ejecutaremos la <strong class="text-[#0047AB]">Revalorización de la Tropa</strong>: un relevamiento técnico y afectivo de nuestros <strong class="text-[#0047AB]">42.371 afiliados</strong>. No buscamos un padrón estático, sino una fuerza orgánica activa. Cada afiliado debe ser el primer sensor de la gestión en su cuadra, el nexo directo entre el vecino y el Estado municipal.
+                            </p>
+                        </div>
+
+                        <div class="card-white p-6 border border-gray-100 shadow-lg relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-2 bg-red-600 text-white text-[10px] font-black uppercase">Fase 2</div>
+                            <h5 class="font-black text-gray-800 uppercase text-xs mb-4 underline decoration-red-500">Ofensiva Territorial – El Escudo AM</h5>
+                            <p class="text-sm text-gray-600 leading-snug mb-4">
+                                El análisis de datos identifica un nicho crítico y prioritario: el <strong class="text-red-600">25% del padrón electoral</strong>, compuesto por nuestros Adultos Mayores. Ante la crueldad del modelo nacional, nuestra respuesta es la cercanía total:
+                            </p>
+                            <ul class="text-[11px] space-y-2 text-gray-600">
+                                <li><strong class="text-red-600 uppercase">Plan Pasquín:</strong> Un boletín impreso de alta penetración que sintetiza pedagógicamente el despojo de derechos perpetrado por el gobierno de Milei.</li>
+                                <li><strong class="text-red-600 uppercase">Militancia de Cercanía:</strong> Despliegue puerta a puerta y presencia diaria en los Centros de Jubilados. Recuperamos el contacto humano para organizar la esperanza y la resistencia.</li>
+                            </ul>
+                        </div>
+
+                        <div class="card-white p-6 border border-gray-100 shadow-lg relative overflow-hidden">
+                            <div class="absolute top-0 right-0 p-2 bg-[#5499C7] text-white text-[10px] font-black uppercase">Fase 3</div>
+                            <h5 class="font-black text-gray-800 uppercase text-xs mb-4">Soberanía y Arraigo</h5>
+                            <p class="text-sm text-gray-600 leading-snug">
+                                IV. Fase 3: Una vez aceitada la maquinaria con nuestros mayores, escalaremos el modelo hacia el tercer nicho en volumen: la <strong class="text-[#0047AB]">Comunidad de Migrantes</strong>. Implementaremos un <strong class="text-[#0047AB]">Censo Integral de Residencia y Arraigo</strong>. El objetivo es doble: verificar la presencia efectiva en el territorio y garantizar que el PJ sea el garante de los derechos de quienes eligen Lomas de Zamora para vivir, trabajar y soñar.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 p-6 bg-blue-900 rounded-2xl text-center shadow-2xl">
+                        <h5 class="text-white font-black uppercase text-sm mb-2 tracking-widest italic underline decoration-[#F39C12]">V. Conclusión Estratégica: De la Segmentación a la Victoria</h5>
+                        <p class="text-blue-100 text-sm leading-relaxed max-w-3xl mx-auto">
+                            Este plan utiliza la <strong class="text-[#F39C12]">Clusterización</strong> y la analítica avanzada para que la militancia no camine a ciegas. Optimizamos el esfuerzo del compañero para que cada visita tenga un propósito y cada reunión un resultado. Estamos construyendo una maquinaria electoral invencible, donde la tecnología potencia la lealtad y el dato fundamenta la doctrina.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="resumen" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="card-white p-6 border-l-8 border-[#0047AB]">
+                        <p class="text-gray-400 text-[10px] uppercase font-black tracking-widest mb-1">Total Afiliados PJ</p>
+                        <h3 class="text-4xl font-black text-blue-900">42.371</h3>
+                    </div>
+                    <div class="card-white p-6 border-l-8 border-pink-500">
+                        <p class="text-gray-400 text-[10px] uppercase font-black tracking-widest mb-1">Composición Femenina</p>
+                        <h3 class="text-4xl font-black text-pink-600">58%</h3>
+                    </div>
+                    <div class="card-white p-6 border-l-8 border-yellow-500">
+                        <p class="text-gray-400 text-[10px] uppercase font-black tracking-widest mb-1">Piso Electoral 10x</p>
+                        <h3 class="text-4xl font-black text-gray-800">150.000</h3>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="card-white p-8">
+                        <h4 class="font-black mb-6 uppercase text-sm tracking-widest border-b pb-2">Comportamiento Afiliados (Sept vs Oct)</h4>
+                        <canvas id="chartAfiliados"></canvas>
+                        <p class="text-[11px] mt-6 text-gray-400 italic">El 59.5% votó en ambas, pero un 21.9% no votó en ninguna.</p>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="bg-blue-900 text-white p-8 rounded-2xl shadow-lg">
+                            <h5 class="font-black text-xl mb-4 uppercase tracking-tighter">Estrategia de Crecimiento</h5>
+                            <p class="text-sm opacity-90 leading-relaxed mb-6">
+                                Fidelizando al 50% de nuestros votantes afiliados (15k) y logrando que cada uno sume 10 referidos, construimos un piso sólido.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4 text-center">
+                                <div class="bg-white/10 p-3 rounded-lg"><span class="block font-black">43.000</span> <span class="text-[9px] uppercase opacity-60">Afiliados vía CGM</span></div>
+                                <div class="bg-white/10 p-3 rounded-lg"><span class="block font-black">86</span> <span class="text-[9px] uppercase opacity-60">Responsables</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="jubilados" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card-white p-8 border-t-8 border-red-600">
+                        <h4 class="font-black mb-4 uppercase text-red-600 tracking-tighter text-xl text-center">Plan Pasquín: Adultos Mayores</h4>
+                        <p class="text-sm text-gray-600 mb-6 text-center italic">Mensaje anti-Milei y penetración en centros de jubilados.</p>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-gray-50 rounded-xl flex justify-between items-center">
+                                <span class="text-xs font-bold uppercase text-gray-500">Votaron (Al menos 1 vez)</span>
+                                <span class="text-xl font-black text-gray-800">85.799 (62.1%)</span>
+                            </div>
+                            <div class="p-4 bg-red-50 rounded-xl flex justify-between items-center border border-red-100">
+                                <span class="text-xs font-bold uppercase text-red-400">No Votaron</span>
+                                <span class="text-xl font-black text-red-600">54.201 (37.9%)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-white p-8">
+                        <h4 class="font-black mb-6 uppercase text-sm tracking-widest text-center">Distribución de Voto AM</h4>
+                        <canvas id="chartJubilados"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="migrantes" class="tab-content">
+                <div class="card-white p-10 border-t-8 border-blue-900">
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+                        <div class="text-center md:text-left">
+                            <h4 class="font-black text-3xl uppercase tracking-tighter">Censo Integral Migrante</h4>
+                            <p class="text-blue-600 font-bold italic">Depuración del padrón para consolidar el bastión.</p>
+                        </div>
+                        <div class="mt-4 md:mt-0 bg-blue-900 text-white px-8 py-3 rounded-full font-black text-xl shadow-lg">
+                            66.7k ELECTORES
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="p-8 bg-blue-50 rounded-3xl border-2 border-blue-100">
+                            <h5 class="text-xs font-black uppercase text-blue-400 mb-2">Voto Favorable (Sept)</h5>
+                            <p class="text-5xl font-black text-blue-900">62.87%</p>
+                            <p class="mt-4 text-sm text-blue-700 italic">"Obtuvimos 11.953 votos migrantes".</p>
+                        </div>
+                        <div class="p-8 bg-red-50 rounded-3xl border-2 border-red-100">
+                            <h5 class="text-xs font-black uppercase text-red-400 mb-2">Participación Migrante</h5>
+                            <p class="text-5xl font-black text-red-600">28.48%</p>
+                            <p class="mt-4 text-sm text-red-700 italic text-center underline">Hay un enorme potencial de crecimiento.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tecnico" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card-white p-8 border-l-8 border-black shadow-2xl">
+                        <h4 class="font-black mb-6 uppercase tracking-widest text-xl underline decoration-blue-500 decoration-4 italic">El Método de Precisión</h4>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-gray-50 rounded-lg"><p class="text-xs"><strong>Datos Demográficos:</strong> Variables duras (edad, género, barrio).</p></div>
+                            <div class="p-4 bg-gray-50 rounded-lg"><p class="text-xs"><strong>Comportamentales:</strong> Si votaron, si son afiliados.</p></div>
+                            <div class="p-4 bg-gray-50 rounded-lg"><p class="text-xs"><strong>Socio-Afines:</strong> Migrantes, centros de jubilados.</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-black text-green-400 p-8 rounded-3xl font-mono text-xs shadow-2xl overflow-hidden relative">
+                        <div class="opacity-10 absolute -right-4 -bottom-4">
+                            <img src="logo_pj.png" alt="Marca de agua PJ" class="h-40 w-auto object-contain grayscale invert">
+                        </div>
+                        <p class="text-white font-bold mb-4">// LÓGICA PREDICTIVA 2027</p>
+                        <p class="mb-2"># Meta: Padrón 600K electores</p>
+                        <p>Fase 1: Tabla Maestra de Features</p>
+                        <p>Fase 2: Ejecución Algoritmo Matemático</p>
+                        <p>Fase 3: Interpretación Estratégica Humana</p>
+                        <br>
+                        <p class="text-blue-400 italic">"De la segmentación a la predicción"</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="conclusiones" class="tab-content">
+                <div class="card-white p-10 border-l-8 border-yellow-500 shadow-xl">
+                    <h3 class="text-2xl font-black uppercase mb-8 tracking-tighter">Conclusiones Estratégicas</h3>
+                    
+                    <div class="space-y-6 text-gray-700 leading-relaxed text-sm md:text-base">
+                        <p>
+                            La propuesta aquí presentada no es solo un despliegue de métricas; es la hoja de ruta para la construcción de una mayoría irreversible. En un tiempo donde la incertidumbre domina el escenario nacional, Lomas de Zamora tiene la oportunidad y la responsabilidad de consolidar un modelo donde la gestión y el partido sean una sola fibra al servicio del pueblo.
+                        </p>
+                        <p>
+                            Este plan estratégico cierra el círculo entre la ciencia de datos y la lealtad territorial. Al sistematizar el contacto con nuestros 42.000 afiliados, al proteger activamente a nuestros adultos mayores del ajuste nacional y al censar con precisión a nuestra comunidad migrante, estamos haciendo mucho más que una campaña: estamos devolviendo al Partido Justicialista su rol de escudo de los humildes y motor de la comunidad organizada.
+                        </p>
+                        <p>
+                            Bajo la conducción de Daniela Vilar, este esquema de trabajo garantiza que cada esfuerzo militante sea quirúrgico y que cada mensaje llegue al corazón de la demanda vecinal. No caminamos a ciegas; lo hacemos con la certeza que nos dan los datos y la pasión que nos dicta la doctrina.
+                        </p>
+                        
+                        <div class="bg-gray-100 p-6 rounded-2xl border-dashed border-2 border-gray-300 text-center my-8">
+                            <p class="text-xl font-black text-blue-900 uppercase tracking-tighter mb-2">Lomas de Zamora será el bastión donde la tecnología potencie la política</p>
+                            <p class="text-sm font-bold text-gray-600 uppercase">Y donde la organización venza al tiempo. Es momento de transformar la información en poder popular y la segmentación en victoria estratégica.</p>
+                        </div>
+
+                        <div class="text-center mt-6">
+                            <p class="font-black text-lg md:text-xl italic text-[#0047AB] leading-snug">
+                                "Primero la Patria, después el Movimiento y luego los hombres y mujeres que, con lealtad y organización, garantizaremos la grandeza de Lomas."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active-section'));
+            document.querySelectorAll('.sidebar-item').forEach(btn => {
+                btn.classList.remove('sidebar-active');
+                btn.classList.add('opacity-60');
+            });
+
+            document.getElementById(tabId).classList.add('active-section');
+            document.getElementById('btn-' + tabId).classList.add('sidebar-active');
+            document.getElementById('btn-' + tabId).classList.remove('opacity-60');
+
+            const titles = {
+                'presentacion': 'Presentación del Proyecto',
+                'resumen': 'Musculatura Lomense',
+                'jubilados': 'Estrategia Adultos Mayores',
+                'migrantes': 'Censo y Depuración Migrante',
+                'tecnico': 'Gobernanza de Datos & Clusterización',
+                'conclusiones': 'Resumen y Cierre'
+            };
+            document.getElementById('header-title').innerText = titles[tabId];
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new Chart(document.getElementById('chartAfiliados'), {
+                type: 'bar',
+                data: {
+                    labels: ['Votaron Ambas', 'No Votaron', 'Sólo Sept', 'Sólo Oct'],
+                    datasets: [{
+                        data: [25379, 9327, 4015, 3775],
+                        backgroundColor: ['#0047AB', '#D1D5DB', '#60A5FA', '#93C5FD'],
+                        borderRadius: 8
+                    }]
+                },
+                options: { responsive: true, plugins: { legend: { display: false } } }
+            });
+
+            new Chart(document.getElementById('chartJubilados'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Votaron AMBAS', 'Votaron SOLO UNA'],
+                    datasets: [{
+                        data: [61727, 24072],
+                        backgroundColor: ['#0047AB', '#E5E7EB'],
+                        borderWidth: 0
+                    }]
+                },
+                options: { responsive: true, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { font: { weight: 'bold', size: 10 } } } } }
+            });
+        });
+    </script>
+</body>
+</html>
